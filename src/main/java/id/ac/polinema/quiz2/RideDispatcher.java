@@ -1,5 +1,5 @@
 package id.ac.polinema.quiz2;
-
+import java.util.Map;
 import java.util.List;
 
 /**
@@ -22,8 +22,16 @@ public class RideDispatcher {
      *
      * @param payment metode pembayaran yang dipakai saat checkout
      */
+
+    private PaymentMethod payment;
+    private List<Ride> orders;
+    private Map<String, Ride> ordersById;
+
+
     public RideDispatcher(PaymentMethod payment) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        this.payment = payment;
+
+        // throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
@@ -42,21 +50,24 @@ public class RideDispatcher {
      * @return perjalanan yang cocok, atau {@code null} bila tidak ada
      */
     public Ride findById(String rideId) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return ordersById.get(rideId);
+        // throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
      * @return jumlah perjalanan yang tersimpan
      */
     public int count() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return orders.size();
+        // throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
      * @return daftar perjalanan menurut urutan penambahan
      */
     public List<Ride> getOrders() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return orders;
+        // throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
