@@ -1,6 +1,8 @@
 package id.ac.polinema.quiz2;
 import java.util.Map;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * TAHAP 4 dan 5 (collections dan SOLID): pengatur perjalanan yang menyimpan
@@ -30,6 +32,8 @@ public class RideDispatcher {
 
     public RideDispatcher(PaymentMethod payment) {
         this.payment = payment;
+        this.orders = new ArrayList<>();
+        this.ordersById = new HashMap<>();
 
         // throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -40,7 +44,9 @@ public class RideDispatcher {
      * @param order perjalanan yang ditambahkan
      */
     public void add(Ride order) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        orders.add(order);
+        ordersById.put(order.getRideId(), order);
+        // throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
@@ -79,6 +85,11 @@ public class RideDispatcher {
      * @param rideId kode perjalanan yang di-checkout
      */
     public void checkout(String rideId) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Ride order = findById(rideId);
+        if (order == null) {
+            return;
+        }
+        payment.pay(order.getRideId(), order.calculateFare());
+        // throw new UnsupportedOperationException("Not implemented yet");
     }
 }
