@@ -1,42 +1,18 @@
 package id.ac.polinema.quiz2;
 
 /**
- * TAHAP 1 (pemanasan): penumpang yang membuat pesanan.
+ * TAHAP 2: perjalanan ojek motor. Tidak menawarkan asuransi perjalanan.
  */
-public class Passenger {
+public class BikeRide extends Ride {
 
-    private String passengerId;
-    private String name;
+    private static final double RATE_PER_KM = 2500;
 
-    /**
-     * Menyimpan kedua parameter ke field.
-     *
-     * @param passengerId kode penumpang
-     * @param name nama penumpang
-     */
-    public Passenger(String passengerId, String name) {
-        this.passengerId = passengerId;
-        this.name = name;
+    public BikeRide(String rideId, Passenger passenger, double distanceKm) {
+        super(rideId, passenger, distanceKm);
     }
 
-    public String getPassengerId() {
-        return passengerId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Mengubah nama. Nama yang null atau kosong (hanya spasi) tidak valid:
-     * abaikan dan biarkan nama lama tetap.
-     *
-     * @param name nama baru
-     */
-    public void setName(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            return;
-        }
-        this.name = name;
+    @Override
+    public double calculateFare() {
+        return getDistanceKm() * RATE_PER_KM;
     }
 }
